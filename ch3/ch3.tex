@@ -1,0 +1,183 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\setcounter{chapter}{2}
+\chapter{Entropía en función del correlador y la resolvente}
+
+En el capítulo anterior vimos algunas magnitudes de la teoría de información y sus propiedades. Además discutimos como pueden incorporarse en el marco de la teoría cuántica de campos. Al final del día queremos calcular las entropías de Rényi para un campo fermiónico en el círculo a temperatura finita. Para esto vamos a presentar la teoría del fermión libre en 1+1, calcular la matriz densidad reducida a una región y derivar algunas fórmulas que van a resultar útiles más adelante.
+
+\section{Fermión en 1+1}
+
+La acción del fermión libre está dada por
+\begin{align}
+	S[\psi] = i \int dt\, dx\, \bar \psi \gamma^\mu \partial_\mu \psi
+\end{align}
+
+\noindent donde $\gamma^\mu$ es un vector de matrices de 2x2 que satisfacen el álgebra de Clifford $\acomm{\gamma^\mu}{\gamma^\nu} = 2 \eta^{\mu \nu}$ y muchas veces se elige una representación en términos de las matrices de Pauli. Si la representación elegida es real entonces las componentes del espinor
+\begin{align}
+	\psi =
+	\begin{pmatrix}
+		\psi_- \\
+		\psi_+
+	\end{pmatrix}
+\end{align}
+
+\noindent son reales y la acción se desacopla, $S\off \psi = S_+\off{\psi_+} + S_-\off{\psi_-}$. El Hamiltoniano de la teoría está dado por
+\begin{align}
+	\mathcal H = -i \int dx\, \of{\psi_+^\dagger \partial_x \psi_+ - \psi_-^\dagger \partial_x \psi_-}
+\end{align}
+
+\noindent el cual podemos ver es cuadrático en los campos y por lo tanto el estado fundamental cumple el teorema de Wick, i.e., las funciones de $n$-puntos pueden escribirse como combinación de funciones de 2-puntos. Esta propiedad es general para teorías libres.
+
+\section{Entropías de Rényi en función del correlador}
+
+Recordemos que queremos calcular magnitudes de la teoría de información para una región $V$ del espacio. Para esto necesitamos la matriz densidad reducida a esta región. Para calcularla discretizamos el espacio mediante la introducción de un \textit{cutoff} $\epsilon$ y al final tomamos el límite $\epsilon \to 0$.
+
+Definimos la matriz densidad reducida al estado $V$ tal que reproduzca los valores de expectación de un observable $O_V$
+\begin{align}
+	\mv{O_V} = \tr\of{\rho_V O_V}
+\end{align}
+
+\noindent donde el subíndice indica que consideramos el estado reducido a la región $V$ del espacio. Como vale el teorema de Wick para la teoría, alcanza para definir la matriz densidad pedirle que reproduzca las funciones de dos puntos.
+
+La teoría de campos queda definida por los correladores según los axiomas de Wightman. si consideramos estados gaussianos, como es el caso del estado de vacío para una teoría libre, podemos escribir los correladores de $n$-puntos en terminos de las funciones de 2-puntos. Esto entonces motiva escribir la matriz densidad reducida a la región $V$ en términos de las funciones de 2-puntos.
+
+Proponemos el ansatz
+\begin{align}
+	\rho_V = \frac 1Z e^{-\mathcal H} = \frac 1Z e^{-\sum_{i, j} H_{i j} \psi_i^\dagger \psi_j}
+\end{align}
+
+\noindent donde $H_{ij}$ es hermítico y los campos cumplen las relaciones de anticonmutación
+\begin{align}
+	\acomm{\psi_i}{\psi_j^\dagger} = \delta_{ij}.
+\end{align}
+
+Diagonalizamos el Hamiltoniano $U^\dagger H U = \text{Diag}\of{\epsilon_i}$, donde $\epsilon_i$ son los autovalores del Hamiltoniano. Entonces $\sum_{i, j} \psi_i^\dagger H_{i j} \psi_j = \sum_l \epsilon_l d_l^\dagger d_l$, donde los operadores de creación y destrucción cumplen las relaciones de anticonmutación
+\begin{align}
+	\label{eq:ch3:creat_annihi_acomm}
+	\acomm{d_i}{d_j^\dagger} = \delta_{i j}.
+\end{align}
+
+Luego la matriz densidad reducida a la región $V$
+\begin{align}
+	\rho_V = \frac 1Z e^{-\sum_l \epsilon_l\, d_l^\dagger d_l},
+\end{align}
+
+\noindent donde la constante de normalización $Z$ se define de forma tal que la traza de la matriz densidad sea igual a 1,y resulta $Z = \prod_l \of{1 + e^{-\epsilon_l}}$. Se puede ver que esta forma propuesta para la matriz densidad reducida automáticamente cumple el teorema de Wick para los operadores de creación y destrucción. Luego, como los campos y sus momentos canónicos se escriben como combinación lineal de estos, también cumplen el teorema de Wick. Podemos entonces encontrar una expresión del Hamiltoniano en términos del correlador $C_{ij} \equiv \mv{\psi_i \psi_j^\dagger} = \tr\of{\rho_V \psi_i \psi_j^\dagger}$. Para esto empezamos viendo el elemento $kl$ que se obtiene de encerrar el correlador con las matrices que diagonalizan al Hamiltoniano
+\begin{align}
+	\label{eq:ch3:ham_corr_1}
+	\of{U C U^\dagger}_{kl} = \frac 1Z \sum_{\offf n} e^{- \sum_m \epsilon_m n_m} \delta_{k l} \of{1 - n_k},
+\end{align}
+
+\noindent donde $\sum_{\offf n}$ viene de la traza e indica que tenemos que sumar sobre todos los valores de $n$. Para llegar al lado derecho se usó \eqref{eq:ch3:creat_annihi_acomm} y $n_m$ corresponde al autovalor del operador de número $d_m^\dagger d_m \ket n = n_m \ket n$. Para el cálculo de los dos términos en \eqref{eq:ch3:ham_corr_1} recordamos que los campos cumplen la estadística de Fermi-Dirac. El primer término es simplemente una delta $\delta_{kl}$ mientras que el segundo término $1/\of{e^{\epsilon_k} + 1}$, por lo tanto el elemento de matriz queda $\of{U C U^\dagger}_{kl} = \delta_{kl}/\of{1 + e^{-\epsilon_k}}$, a partir de la cual se puede obtener de forma directa la relación
+\begin{align}
+	C = \frac 1{1 + e^{-H}},
+\end{align}
+
+\noindent y despejando el Hamiltoniano
+\begin{align}
+	H = - \log\of{C^{-1} - 1}.
+\end{align}
+
+Esta expresión se entiende como una relación entre los autovalores de ambos operadores. Es importante resaltar que a partir de esta expresión podemos ver que el espectro de $C$ se encuentra en el intervalo $\of{0, 1}$. Si llamamos $\nu$ a los autovalores del correlador, usando las relaciones de arriba podemos ver que la traza de la potencia $n$-ésima de la matriz densidad se escribe
+\begin{align}
+	\tr\of{\rho_V^n} = \prod_l\of{\nu_l^n + \of{1 - \nu_l}^n},
+\end{align}
+
+\noindent lo cual nos permite escribir las entropías de Rényi como
+\begin{align}
+	S^{\of n} = \frac 1{1 - n} \tr\log\of{C^n + \of{1 - C}^n}.
+\end{align}
+
+Hasta acá dijimos que trabajamos en una red cuadrada. A partir de ahora vamos a suponer que este resultado es válido en el continuo y que tomamos el valor del \textit{cutoff} a cero.
+
+Observemos que según lo hecho hasta ahora, no hay una restricción para el exponente $n$, como si ocurre con otras formas de cálculo, e.g. el método de réplicas.
+Recordemos que queremos encontrar una expresión para las entropías de Rényi que valga para $n$ real.
+
+\section{Entropías de Rényi en función de la resolvente}
+
+Lo que buscamos ahora es escribir las entropías de Rényi en términos de la resolvente del correlador
+\begin{align}
+	R\of \xi = \frac 1{\xi - \of{1/2 - C}},
+\end{align}
+
+\noindent y luego aprovechar que podemos encontrar una expresión cerrada para la resolvente del fermión en el toro. Para esto usamos la fórmula integral de Cauchy
+\begin{align}
+	f\of{\frac 12 - z} = \frac 1{2 \pi i} \oint dw\, \frac{f\of w}{w - \of{1/2 - z}},
+\end{align}
+
+\noindent la cual nos permite reescribir
+\begin{align}
+	S_n = \frac 1{2 \pi i} \frac 1{1 - n} \oint d\xi\, \tr \frac{\log\off{\of{1/2 - \xi}^n + \of{1/2 + \xi}^n}}{\xi - \of{1/2 - C}},
+\end{align}
+
+\noindent donde la curva de integración debe encerrar la región $f_n\of \xi \! = \! \frac 1{1 - n}\log\off{\of{1/2 - \xi}^n + \of{1/2 + \xi}^n}$ es analítica y debe contener además el espectro de $C$. Se puede ver que para $n$ genérico (es decir, no nos restringimos a $n$ entero) $f_n$ es analítica en todos lados excepto en $\of{-\infty, -1/2} \cup \of{1/2, \infty}$ donde el argumento del logaritmo es real negativo. El espectro de $1/2 - C$ se encuentra en el intervalo $\of{-1/2, 1/2}$, por lo tanto un contorno de integración que cumple los requisitos es
+\textcolor{red}{Contorno integración}.
+
+\section{Cálculo de la resolvente en el toro}
+
+En esta sección vamos a calcular la resolvente del toro. Para esto primero vamos a ver que el problema de la resolvente es equivalente a encontrar una función que cumpla una serie de restricciones y luego encontrar explícitamente la función. En otros trabajos previos se calculó la resolvente mediante el método de imágenes el cual consiste en estudiar que restricciones debe tener la función debido a la invarianza modular del toro y luego ver que en el caso del plano se obtiene el resultado esperado.
+
+\subsection{Problema analítico}
+
+Sea $S: \mathbb C \to \mathbb C$ y $A$ una colección arbitraria de intervalos tal que:
+\begin{enumerate}
+	\item $S\of z$ es analítica para $z \in \off{-L, L} \times \off{- \beta, \beta} - \bar A$ ($\bar A$ es la \textit{clausura} de $A$).
+	
+	\item $S^\mp\of x = \frac{\gamma}{\gamma - 1} S^\pm\of x - \frac{f\of x}{\gamma \of{\gamma - 1}}, \quad x \in A$
+	
+	\item $S\of{z + P_i} = \of{-1}^{\nu_i} S\of z$ para $z \to \infty$
+	
+	\item $\of{z - q_i} S\of z \to 0$ cuando $z \to q_i$, donde $q_i \in \partial A$
+\end{enumerate}
+
+El propagador del fermión en el toro debe cumplir
+\begin{itemize}
+	\item $\displaystyle G(z, w) \simeq \pm \frac 1{2 \pi i} \frac 1{z - w}$ para $z \to w$. Además es analítico para todo $z \neq w \in (-L, L) \times (-\beta, \beta)$.
+	\item $G(z + P_i, w) = (-1)^{\nu_i} G(z, w)$.
+\end{itemize}
+
+\subsubsection{Equivalencia entre los problemas}
+\begin{align*}
+	\oint_{\mathcal C} dw\, G(z, w) S\of w = 0
+\end{align*}
+
+\begin{align*}
+	\oint_{\partial \text{cell}} dw\, G\of{z, w} S\of w & =
+	\int_{z_0}^{z_0 + L} dw\, G\of{z, w} S\of w +
+	\int_{z_0 + L}^{z_0 + L + i \beta} dw\, G\of{z, w} S\of w \\
+	& \qquad + \int_{z_0 + L + i \beta}^{z_0 + i \beta} dw\, G\of{z, w} S\of w +
+	\int_{z_0 + i \beta}^{z_0} dw\, G\of{z, w} S\of w
+\end{align*}
+
+\noindent en la segunda y tercera integral cambiamos respectivamente
+\begin{align*}
+	& w \to w - L & & w \to w - i \beta,
+\end{align*}
+
+\begin{align*}
+	\oint_{\partial \text{cell}} dw\, G\of{z, w} S\of w & =
+	\int_{z_0}^{z_0 + L} dw\, G\of{z, w} S\of w +
+	\int_{z_0}^{z_0 + i \beta} dw\, G\of{z, w + L} S\of{w + L} \\
+	& \qquad + \int_{z_0 + L}^{z_0} dw\, G\of{z, w + i \beta} S\of{w + i \beta} +
+	\int_{z_0 + i \beta}^{z_0} dw\, G\of{z, w} S\of w \\
+	& = \int_{z_0}^{z_0 + L} dw\, \off{G\of{z, w} S\of w - G\of{z, w + i \beta} S\of{w + i \beta}} \\
+	& \qquad + \int_{z_0}^{z_0 + i \beta} dw\, \off{G\of{z, w} S\of w - G\of{z, w + L} S\of{w + L}} \\
+	& = 0
+\end{align*}
+
+\subsubsection{Solución del problema analítico}
+
+Proponemos el ansatz
+\begin{align*}
+	S\of z & = e^{\mp i k \omega\of z} \tilde S\of z \\
+	k\of \gamma & = \frac 1{2 \pi} \log\of{\frac \gamma{\gamma - 1}},
+\end{align*}
+
+\noindent donde
+\begin{align*}
+	\omega\of x = \sum_{j = 1}^n \log\abs{\frac{\sigma\of{x - a_j}}{\sigma\of{x - b_j}}}
+\end{align*}
+
+\end{document}

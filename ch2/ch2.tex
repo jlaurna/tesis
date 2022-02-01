@@ -1,0 +1,231 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\setcounter{chapter}{1}
+\chapter{Entrelazamiento cuántico}
+
+\section{Descripción de un sistema cuántico}
+
+%Qué es un sistema cuántico?
+En la teoría cuántica axiomática, el estado de un sistema físico se encuentra contenido en un vector $\ket \psi$ que vive en un espacio de Hilbert $\mathcal H$. En general se considera que los estados están normalizados y se establece una relación de equivalencia entre estados que difieren en una fase compleja. A los elementos pertenecientes a esta clase de equivalencia se los llama \textit{rayos}.
+
+Los observables de un sistema físico, se corresponden con operadores autoadjuntos $A = A^\dagger$ que actúan sobre rayos del espacio de Hilbert y su valor de expectación se calcula multiplicando a izquierda y derecha por el estado, $\mv A = \bra \psi A \ket \psi$. Los estados que pueden describirse como un rayo en el espacio de Hilbert se conocen como \textit{estados puros}. Puede ocurrir el caso en que no sabemos con certeza el estado en el cual se encuentra nuestro sistema, si no que, cuando mucho, sabemos que puede encontrarse en algunos estados con una cierta probabilidad. En este caso no podemos describir al sistema con un rayo y es necesario introducir un elemento que nos permita generalizar nuestra descripción del estado.
+
+Supongamos que sabemos que nuestro sistema puede encontrarse en algún estado $\ket{\psi_i}$ con una probabilidad $p_i$, la descripción de este sistema va a estar dada por el ensamble $\offf{p_i, \ket{\psi_i}}$ donde además se tienen las restricciones $0 \leq p_i \leq 1$ y $\sum_i p_i = 1$. A los estados descripto por un sensamble estadístico de esta forma,  los llamamos \textit{estados mixtos}. Vamos entonces a definir un objeto que para estados puros, provee una descripción equivalente a la de un rayo y permite describir a los estados mixtos, la \textit{matriz densidad}
+\begin{align}
+	\rho \equiv \sum_i p_i \ket{\psi_i} \bra{\psi_i}.
+\end{align}
+
+Esta matriz densidad cumple las siguientes propiedades
+
+%\begin{itemize}[label=$\bullet$]
+%	\item Es un operador hermítico, $\rho = \rho^\dagger$.
+%	
+%	\item Es un operador semidefinido positivo.
+%	
+%	\item Cumple la normalización $\tr\of{\rho} = 1$.
+%\end{itemize}
+
+Más aún, cualquier operador que cumpla con estas propiedades se puede interpretar como un operador densidad. En el caso particular de estados puros se tiene que
+\begin{align}
+	\rho = \ket \psi \bra \psi,
+	\label{eq:ch2_density_matrix_pure_state}
+\end{align}
+
+\noindent y podemos ver que el valor de expectación de $A$ coincide con
+\begin{align}
+	\mv A = \tr\of{\rho A},
+	\label{eq:ch2_mv_observable}
+\end{align}
+
+\noindent donde esta última expresión en \eqref{eq:ch2_mv_observable} es general y vale también para estados mixtos.
+
+A partir de la ecuación \eqref{eq:ch2_density_matrix_pure_state} podemos notar que la matriz densidad para un estado puro es un proyector sobre ese estado, por lo tanto cumple que $\rho^2 = \rho$. Si a esto último lo juntamos con la normalización de la matriz densidad podemos ver que se cumple la relación
+\begin{align}
+	\tr\of{\rho^2} \leq 1,
+\end{align}
+
+\noindent donde la igualdad vale si y solo si el estado $\rho$ es puro.
+
+%Para distinguir si un estado es puro o no, podemos notar que la matriz densidad para un estado puro es un proyector sobre ese estado, por lo tanto cumple que $\rho^2 = \rho$. Con esto y la normalización de la matriz densidad podemos ver que $\tr\of{\rho^2} \leq 1$ donde la igualdad se cumple si y solo si el estado es puro.
+
+\subsection{Sistemas compuestos}
+
+Supongamos que tenemos un sistema compuesto por múltiples sistemas físicos. El estado del sistema total vive en un espacio de Hilbert compuesto por el producto tensorial de los espacios de cada subsistema. Podemos entonces imaginarnos que tenemos el sistema total en algún estado puro $\ket \psi$ y, una pregunta bastante natural que podemos hacernos es si este estado puede escribirse como un producto de estados de cada subsistema. Por ejemplo, consideremos el estado de dos qubits
+\begin{align}
+	\ket{\psi_1} = \frac 1{\sqrt 2} \of{\ket{0 1} + \ket{0 0}} = \ket 0_A \otimes \frac 1{\sqrt 2} \of{\ket 1_B + \ket 0_B}.
+\end{align}
+
+Rápidamente vemos que este estado puede factorizarse en estados pertenecientes a cada subsistema. Otro estado posible para dos qubits es
+\begin{align}
+	\ket{\psi_2} = \frac 1{\sqrt 2} \of{\ket{0 1} + \ket{1 0}}.
+	\label{eq:ch2_bell_pair}
+\end{align}
+
+Luego de probar un rato, uno puede convencerse de que no hay ninguna forma posible de factorizar este estado como el producto de un estado perteneciente a cada subsistema. Esto último es lo que ocurre para la mayoría de los estados que viven en el Hilbert del sistema compuesto. ¿Por qué es importante evidenciar esta distinción entre estados separables y no separables? Ocurre que si el estado total es separable, cada uno de los subsistemas se encuentran descriptos por un estado puro. En cambio, si el estado total no es separable, solo podemos saber que puede encontrarse en algún estado con una cierta probabilidad.
+
+\subsubsection{Matriz densidad reducida}
+
+Para estudiar los subsistemas de un sistema compuesto, usamos la \textit{matriz densidad reducida}, la cual consiste en tomar (en alguna base) la traza parcial sobre un subsistema. Sea $\rho \in \mathcal H = \mathcal H_A \otimes \mathcal H_B$, y sea $\offf{\ket b}$ una base de $\mathcal H_B$, el estado reducido al subsistema $A$ se define
+\begin{align}
+	& \rho_A \equiv \tr_B\of{\rho} = \sum_b \bra b\, \rho\, \ket b.
+\end{align}
+
+¿En qué sentido decimos que $\rho_A$ describe al estado del subsistema $A$? Supongamos que tenemos un observable sobre el subsistema $A$, es decir, un operador de la forma $M = M_A \otimes I_B$, donde $I_B$ es el operador identidad actuando sobre elementos de $\mathcal H_B$. Se tiene entonces que
+\begin{align}
+	\tr\of{M \rho} = \tr_A\of{M_A \rho_A}.
+\end{align}
+
+Veamos un ejemplo. Para el estado puro que propusimos arriba $\ket{\psi} = \frac 1{\sqrt 2} \of{\ket{0 1} + \ket{1 0}}$ la matriz densidad reducida al subsistema $A$ queda
+\begin{align}
+	\rho_A = \frac 12\of{\ket 0 \bra 0 + \ket 1 \bra 1}
+\end{align}
+
+\noindent la cual nos dice que el subsistema puede encontrarse con igual probabilidad en el estado $\ket 0$ o $\ket 1$. Como veremos más adelante, esto ocurre en general. Si partimos con un estado global puro, los subsistemas se van a encontrar en estados mixtos.
+
+\section{Entrelazamiento}
+
+Como vimos más arriba, existen estados que viven en un espacio de Hilbert compuesto y que pueden factorizarse como el producto de estados de cada subsistema y otros que no. Vamos a decir entonces que si un estado puede factorizarse, es un estado \textit{separable} y en caso contrario es un estado \textit{entrelazado}.
+
+%\subsection{Estados puros}
+\subsection{Entropía de Von Neumann}
+
+Empecemos viendo que ocurre en el caso de estados puros. Comentamos previamente que una forma de distinguir si un estado $\rho$ es puro, es ver si es o no un proyector. Resulta conveniente tener otro criterio que nos permita realizar esta distinción. Para esto definimos una función que cumpla la propiedad de ser cero si y solo si el estado es puro, la \textit{entropía de Von Neumann}
+\begin{align}
+	S\of \rho \equiv - \tr\of{\rho \log \rho} = - \sum_\lambda p_\lambda \log p_\lambda,
+	\label{eq:ch2_von_neumann_entropy}
+\end{align}
+
+\noindent donde $p_\lambda$ corresponden a los autovalores de $\rho$. Esta función cumple con varias propiedades importantes, algunas de ellas
+
+%Elegí estas propiedades porque me parecía que mostrar que es una función acotada está bueno, y la primera del operador unitario es importante porque las evoluciones de rho son unitarias y lo mismo las transformaciones de simetría. Pueden cambiarse eventualmente las propiedades listadas.
+
+\begin{itemize}[label=$\bullet$]
+	\item $S\of{U^\dagger\, \rho\, U} = S\of{\rho}$, con $U$ un opeardor unitario.
+	
+	\item $S\of \rho \geq 0$.
+	
+	\item $S\of \rho \leq \log\of d$, donde $d$ es la dimensión de $\mathcal H$.
+\end{itemize}
+
+De la definición \eqref{eq:ch2_von_neumann_entropy} vemos que la entropía es máxima cuando todos los estados son equiprobables con probabilidad $p_\lambda = 1/d$ y mínima cuando $p_j = 1$ y $p_\lambda = 0$ para todo $\lambda \neq j$. En este sentido decimos que la entropía da cuenta de la falta de información sobre el sistema.
+
+\subsection{Estados puros}
+
+Sea $\ket \psi$ un estado puro que vive en un espacio de Hilbert $\mathcal H_A \otimes \mathcal H_B$, y sean $\offf{\ket a}$, $\offf{\ket b}$ dos bases de $\mathcal H_A$ y $\mathcal H_B$ respectivamente, la forma más general de descomponer este estado
+\begin{align}
+	\ket \psi = \sum_{a, b} c_{a b} \ket a_A \otimes \ket b_B.
+\end{align}
+
+Cualquier estado puro puede reescribirse en una base distinta, más iluminadora, que permite dar una condición necesaria y suficiente (además de que puede calcularse fácilmente) para establecer si un estado es separable o no, la \textit{descomposición de Schmidt}. Existen conjuntos ortonormales $\ket{i}_A$ y $\ket{i}_B$ tales que el estado se puede escribir como
+\begin{align}
+	\ket \psi = \sum_i \sqrt{p_i}\, \ket{i}_A \otimes \ket{i}_B
+\end{align}
+
+\noindent donde $\offf{p_i}$ es una distribución de probabilidad. Decimos entonces que un estado puro es separable si existe un único $p_i \neq 0$.
+
+A partir de este último resultado, hay por lo menos dos cosas que vale la pena indicar. Primero, veamos que las matrices reducidas al sistema $A$ y $B$ respectivamente quedan
+\begin{align}
+	& \rho_A = \sum_i p_i \ket i_A \bra i & & \rho_B = \sum_i p_i \ket i_B \bra i,
+\end{align}
+
+\noindent es decir, el espectro de ambas matrices densidad reducida son el mismo. Este resultado va a cumplir un rol muy importante más adelante cuando definamos la \textit{entropía de entrelazamiento}.
+
+Segundo, nos permite definir una noción de \textit{cantidad} de entrelazamiento:
+\begin{itemize}[label=$\bullet$]
+	
+	\item Ningún entrelazamiento si $p_i = 1$ y $p_j = 0$ para todo $i \neq j$.
+	
+	\item Máximo entrelazamiento si $\displaystyle p_i = \frac 1{d}, \ \forall i$, donde $d$ es el mínimo entre las dimensiones de $A$ y $B$.
+\end{itemize}
+
+En el último caso, decimos que el entrelazamiento es máximo ya que los subsistemas pueden estar en cualquiera de sus estados posibles con igual probabilidad. Cualquier caso entre los extremos va a tener un entrelazamiento intermedio.
+
+\subsection{Estados mixtos}
+
+En el caso de estados mixtos, vamos a decir que un estado $\rho \in \mathcal H = \mathcal H_A \otimes \mathcal H_B$ es \textit{separable} si puede descomponerse de la forma
+\begin{align}
+	\rho = \sum_i p_i\, \rho_i^A \otimes \rho_i^B
+	\label{eq:ch2_separable}
+\end{align}
+
+\noindent mientras que cualquier estado que no cumpla con la condición \eqref{eq:ch2_separable} lo llamamos \textit{entrelazado}. En general, para un estado mixto, decir si un estado es separable o entrelazado es algo no trivial y un área de investigación abierta. Se han propuesto múltiples herramientas para distinguir esta condición.
+
+%%%%% PENDIENTE %%%%%
+\subsubsection{Criterios de separabilidad}
+Pendiente
+
+\section{Entropía de entrelazamiento}
+
+%Definimos la entropía de entrelazamiento 
+
+Dado un estado $\rho$ que vive en el espacio compuesto por dos subsistemas $A$ y $B$, definimos la \textit{entropía de entrelazamiento} de $A$ con respecto a $B$, como la entropía de Von Neumann de la matriz densidad reducida $\rho_A$
+\begin{align}
+	S\of A \equiv S\of{\rho_A} = - \tr\of{\rho_A \log \rho_A}.
+\end{align}
+
+En el caso particular de estados puros, vimos que como consecuencia de la descomposición de Schmidt los autovalores para la matriz reducida de $A$ y $B$ son los mismos, por lo que se tiene
+\begin{align}
+	S\of A = S\of B.
+\end{align}
+
+Entonces la entropía de entrelazamiento, en el caso de estados puros, permite detectar entrelazamiento y cuantificarlo. Esto no es cierto en el caso de un estado global mixto, ya que la entropía va a ser distinta de cero aunque no haya entrelazamiento.
+
+\subsection{Propiedades}
+
+Previamente comentamos algunas propiedades de la entropía cuando introdujimos la entropía de Von Neumann. Otras propiedades interesantes que aparecen cuando consideramos subsistemas son la \textit{subadivitidad}
+\begin{align}
+	S\of A + S\of B \geq S\of{A \cup B},
+\end{align}
+
+\noindent donde la igualdad vale para el caso en que el estado global es separable. Esto nos dice que en general la entropía es una magnitud no extensiva (salvo en el caso de estado global separable).
+
+Otra propiedad que juega un rol importante en varios resultados importantes es la \textit{subaditividad fuerte}, la cual nos dice que para un sistema compuesto por tres subsistemas $A$, $B$ y $C$
+\begin{align}
+	S\of{A \cup B} + S\of{B \cup C} \geq S\of B + S\of{A \cup B \cup C}
+\end{align}
+
+\section{Medidas de entrelazamiento}
+
+\subsection{Entropía relativa}
+
+En el caso de estados misxtos, no es trivial determinar si un estado dado presenta entrelazamiento o no. Una magnitud que puede resultar útil en estos casos es la \textit{entropía relativa}
+\begin{align}
+	S\of{\rho || \sigma} \equiv \tr\off{\rho \of{\log \rho - \log \sigma}},
+\end{align}
+
+\noindent la cual funciona como una medida de la distinguibilidad entre dos esatdos. Esta magnitud es semidefinida positiva.
+
+\subsection{Información mutua}
+
+La \textit{información mutua} entre dos subsistemas
+\begin{align}
+	I\of{A, B} \equiv S\of{\rho || \rho_A \otimes \rho_B} = S\of A + S\of B - S\of{A \cup B},
+\end{align}
+
+\noindent es una medida de las correlaciones que hay en un sistema, tanto clásicas como cuánticas. Dados dos observables $M_A$ y $M_B$, la información mutua impone una cota sobre los correladores
+\begin{align}
+	\frac 12 \of{\frac{\mv{M_A \otimes M_B} - \mv{M_A} \mv{M_B}}{||M_A|| \ ||M_B||}}^2 \leq I\of{A, B}
+\end{align}
+
+La información mutua nos da la pauta de que la correlación cuántica es más fuerte que la correlación clásica, ya que por ejemplo, dado el estado de dos qubits
+\begin{align}
+	\rho = \frac 12\of{\ket{0 0} \bra{0 0} + \ket{1 1} \bra{1 1}},
+\end{align}
+
+\noindent el cual corresponde a un estado mixto separable, la información mutua entre $A$ y $B$ es $I\of{A, B} = \log 2$. Mientras que para el estado \eqref{eq:ch2_bell_pair} tenemos que $I\of{A, B} = 2 \log 2$.
+
+Esta magnitud además es relevante ya que es una magnitud que siempre está bien definida en el contexto de la teoría cuántica de campos que veremos más adelante.
+
+\subsection{Entropías de Rényi}
+
+\section{Entropía en teoría cuántica de campos}
+
+\subsection{Método de réplicas}
+
+\subsubsection{Matriz densidad reducida del estado de vacío}
+
+\subsection{Entropías de Rényi en QFT}
+
+\end{document}

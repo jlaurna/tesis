@@ -1,0 +1,79 @@
+\documentclass[11pt, a4paper, oneside]{book}
+
+\usepackage[spanish, es-nosectiondot]{babel} % Soporte idioma español. El paquete babel spanish introduce un punto en la numeración de las secciones (no así babel english), e.g. 3.1. [Section_name]. El parámetro es-nosectiondot sirve para sacarlo, e.g. 3.1 [Section_name]. 
+\usepackage[utf8]{inputenc}
+
+\usepackage{indentfirst} %Paquete necesario para que haya 
+\setlength{\parindent}{0.5em} %Cantidad de indentaciónindentación por default
+\setlength{\parskip}{0.75em} %Espacio entre parrafos
+
+\usepackage[top=3cm,bottom=3cm, left=2cm, right=2cm]{geometry}
+
+\usepackage{hyperref} %Para que las referencias sean hipervinculos
+\hypersetup{
+            colorlinks=true,
+            linkcolor=black,
+            urlcolor=blue,
+            }
+
+\usepackage{subfiles}
+
+\usepackage{amsmath} % Necesario para estructuras donde escribir ecuaciones, e.g. align
+\usepackage{amsfonts}
+\numberwithin{equation}{chapter}
+
+\addto\captionsspanish{% Replace "spanish" with the language you use
+  \renewcommand{\contentsname}%
+    {Índice}%
+} % Reemplaza el título en el table of contents. Esta forma funciona si se usa el paquete 'babel'. En caso de no usar el paquete babel se usa "\renewcommand*\contentsname{whatever}".
+
+\linespread{1.25}
+%\usepackage{setspace}
+%\onehalfspacing
+
+\usepackage{enumitem} % Necesario para cambiar a bullets los itemize.
+
+\usepackage{fancyhdr} % Paquete para cambiar cosas estéticas en el header y footer de la página.
+\pagestyle{fancy} % Comando para empezar a configurar con fancyhdr.
+\fancyhf{} % Deja en blanco el footer y header.
+\rfoot{\thepage} % En el borde inferior derecho inserta el nro de pág. Se le puede agregar más info, e.g. \rfoot{Page \thepage} hace que aparezca 'Page #'.
+\rhead{\nouppercase{\rightmark}}
+
+\newcommand{\of}[1]{ \left ( #1 \right ) }
+\newcommand{\off}[1]{ \left [ #1 \right ] }
+\newcommand{\offf}[1]{ \left \{ #1 \right \} }
+\newcommand{\abs}[1]{ \left | #1 \right | }
+\newcommand{\comm}[2]{ \off{#1, #2} }
+\newcommand{\acomm}[2]{ \offf{#1, #2} }
+\newcommand{\bra}[1]{ \left \langle #1 \right | }
+\newcommand{\ket}[1]{ \left | #1 \right \rangle }
+\newcommand{\inprod}[2]{ \langle #1 | #2 \rangle }
+\newcommand{\mv}[1]{ \langle #1 \rangle }
+\newcommand{\tr}{ \text{Tr} }
+
+
+\title{Tesis}
+\author{Juan Laurnagaray}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\subfile{ch1/ch1}
+
+\subfile{ch2/ch2}
+
+\subfile{ch3/ch3}
+
+\subfile{ch4/ch4}
+
+\subfile{ch5/ch5}
+
+\end{document}

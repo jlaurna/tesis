@@ -1,0 +1,31 @@
+\babel@toc {spanish}{}
+\contentsline {chapter}{\numberline {1}Introducción}{3}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Entrelazamiento cuántico}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Descripción de un sistema cuántico}{4}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Sistemas compuestos}{5}{subsection.2.1.1}%
+\contentsline {subsubsection}{Matriz densidad reducida}{6}{section*.2}%
+\contentsline {section}{\numberline {2.2}Entrelazamiento}{6}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Entropía de Von Neumann}{6}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Estados puros}{7}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Estados mixtos}{8}{subsection.2.2.3}%
+\contentsline {subsubsection}{Criterios de separabilidad}{8}{section*.3}%
+\contentsline {section}{\numberline {2.3}Entropía de entrelazamiento}{8}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Propiedades}{8}{subsection.2.3.1}%
+\contentsline {section}{\numberline {2.4}Medidas de entrelazamiento}{9}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Entropía relativa}{9}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Información mutua}{9}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Entropías de Rényi}{10}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}Entropía en teoría cuántica de campos}{10}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Método de réplicas}{10}{subsection.2.5.1}%
+\contentsline {subsubsection}{Matriz densidad reducida del estado de vacío}{10}{section*.4}%
+\contentsline {subsection}{\numberline {2.5.2}Entropías de Rényi en QFT}{10}{subsection.2.5.2}%
+\contentsline {chapter}{\numberline {3}Entropía en función del correlador y la resolvente}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Fermión en 1+1}{11}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Entropías de Rényi en función del correlador}{12}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Entropías de Rényi en función de la resolvente}{14}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Cálculo de la resolvente en el toro}{14}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Problema analítico}{14}{subsection.3.4.1}%
+\contentsline {subsubsection}{Equivalencia entre los problemas}{15}{section*.5}%
+\contentsline {subsubsection}{Solución del problema analítico}{15}{section*.6}%
+\contentsline {chapter}{\numberline {4}Entropías de Rényi}{16}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusiones}{17}{chapter.5}%
